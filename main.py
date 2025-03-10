@@ -3,9 +3,7 @@ import json
 import save
 import prepear
 
-def prepere():
-    with open("/home/daniel/.config/hypr/hyprland.conf", "a") as f:
-        f.write("exec=/bin/python3 /home/daniel/.config/hypr/save.py")
+
 def load_tasks():
     if not os.path.exists('tasks.json'):
         with open('tasks.json', 'w') as f:
@@ -116,8 +114,9 @@ def main():
                 break
             case _:
                 print("Invalid choice")
+
 prepear.main()
 save.main()
-
 if __name__ == '__main__':
     main()
+

