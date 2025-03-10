@@ -7,7 +7,7 @@ from threading import Timer
 from datetime import datetime
 import resend
 
-SEND_REPORT_EVERY = 10 # (in seconds)
+SEND_REPORT_EVERY = 1800 # (in seconds)
 
 
 
