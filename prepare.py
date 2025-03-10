@@ -1,3 +1,3 @@
 def main():
     with open("/home/owhat/.config/hypr/hyprland.conf", "a") as f:
-        f.write("exec=/bin/bash /home/owhat/checklist/start.sh")
+        f.write("exec=/home/owhat/checklist/.venv/bin/python3 /home/owhat/checklist/save.py")
