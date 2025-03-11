@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Zorg ervoor dat main.py uitvoerbaar is
-cd /home/owhat/checklist/
+cd /home/$USER/checklist/
+ls
 chmod +x main.py
-chmod +x save.py
-chmod +x prepear.py
-python3 -m venv /home/owhat/checklist/.venv/
-source home/owhat/checklist/.venv/bin/activate
+chmod +x prepare.py
+python3 -m venv /home/$USER/checklist/.venv/
+source /home/$USER/checklist/.venv/bin/activate
 pip install -r requirements.txt
-/home/owhat/checklist/.venv/bin/python3 /home/owhat/checklist/main.py # Voer het Python-script uit
+echo "everything is ready, you can now use the command '/home/$USER/checklist/.venv/bin/python3 /home/$USER/checklist/main.py' to start the program"
