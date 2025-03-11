@@ -1,6 +1,6 @@
 import os
 import json
-#import prepare
+import prepare
 
 
 def load_tasks():
@@ -114,7 +114,7 @@ def main():
             case _:
                 print("Invalid choice")
 
-#prepare.main()
+prepare.main()
 if __name__ == '__main__':
     main()
 
